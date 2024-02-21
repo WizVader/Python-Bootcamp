@@ -7,9 +7,8 @@ response = requests.get("https://news.ycombinator.com/")
 yc_webpage = response.text
 
 soup = BeautifulSoup(yc_webpage, "html.parser")
-nested_tags = soup.find_all("span", class_="titleline")
-# print(nested_tags)
-for tags in nested_tags:
-    article_tags = tags.find("a", name="href")
-    print(article_tags)
+nested_tags = soup.find("span", class_="titleline")
+article_link = nested_tags.find("a").get("href")
 
+print(nested_tags)
+print(article_link)
