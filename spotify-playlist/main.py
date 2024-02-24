@@ -11,6 +11,7 @@ SPOTIFY_API_ENDPOINT = "https://api.spotify.com/v1/search"
 date = input("Which year do you want to travel to? Type the data in this format YYYY-MM-DD:\n")
 
 URL = f"https://www.billboard.com/charts/hot-100/{date}"
+playlist_name = f"Top 100 of {date}"
 
 response = requests.get(URL)
 billboard_webpage = response.text
@@ -44,3 +45,7 @@ for song in song_names:
     except IndexError:
         print(f"{song} does not exist")
 
+my_playlist = sp.user_playlist_create(user=user_id, name=playlist_name, public=False, collaborative=False,
+                                      description=f"A playlist consisting of the top 100 songs from {date}")
+playlist_id = my_playlist["id"]
+sp.playlist_add_items(playlist_id=playlist_id, items=track_uris, position=None)
