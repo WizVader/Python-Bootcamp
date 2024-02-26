@@ -7,10 +7,11 @@ chrome_options.add_experimental_option("detach", True)
 
 driver = webdriver.Chrome(options=chrome_options)
 
-driver.get("https://www.amazon.com.au/AOC-24G2SE-165HZ-VESA-Black/dp/B0BMPG2XH8")
+driver.get("https://www.python.org")
 
-price_dollar = driver.find_element(By.CLASS_NAME, value="a-price-whole").text
-price_cents = driver.find_element(By.CLASS_NAME, value="a-price-fraction").text
+time_tags = driver.find_elements(By.TAG_NAME, value="time")
+time_text_full = [time_tag.text for time_tag in time_tags]
+time_text = time_text_full[4:]
 
-print(f"The price of the product is: {price_dollar}.{price_cents}")
+
 driver.quit()
