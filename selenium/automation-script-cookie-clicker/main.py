@@ -14,11 +14,17 @@ driver.get(URL)
 cookie = driver.find_element(By.ID, "cookie")
 
 start_time = time.time()
+end_time = start_time + (5 * 60)
 
 while True:
     time.sleep(0.1)  # Done to reduce CPU usage
     cookie.click()
     current_time = time.time()
+    if current_time > end_time:
+        cookies_second_tag = driver.find_element(By.ID, value="cps")
+        cookies_second = cookies_second_tag.text
+        print(f"{cookies_second}")
+        break
     money = int(driver.find_element(By.ID, value="money").text.replace(',', ''))
     condition = (current_time - start_time) >= 5
     if condition:
