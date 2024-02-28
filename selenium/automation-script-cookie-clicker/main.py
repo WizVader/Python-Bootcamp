@@ -26,12 +26,11 @@ while True:
         store_div = driver.find_element(By.ID, value="store")
         item_ids = ["buyCursor", "buyGrandma", "buyFactory", "buyMine", "buyShipment", "buyAlchemy lab", "buyPortal",
                     "buyTime machine"]
-        items_divs = store_div.find_elements(By.TAG_NAME, value="div")
-        print("Entering trying")
+        items_divs = []
+        for i in range(8):
+            items_divs.append(driver.find_element(By.ID, value=item_ids[i]))
         all_prices = driver.find_elements(By.CSS_SELECTOR, value="#store b")
         prices_texts = [tag.text for tag in all_prices]
-        print("Error")
-        #  int(((prices_text.split('-')[1].split())[0]).replace(',', '')) for prices_text in prices_texts
         price = []
         for prices_text in prices_texts:
             if prices_text != "":
@@ -39,9 +38,10 @@ while True:
 
         for i in price[len(price)::-1]:
             if money >= i:
-                print("Buying")
                 price_index = price.index(i)
                 try:
+                    print(i, price_index)
                     items_divs[price_index].click()
                 except StaleElementReferenceException:
                     pass
+
