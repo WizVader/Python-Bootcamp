@@ -16,6 +16,16 @@ li_tags_text = [tag.text for tag in li_tags]
 
 date_tags = [tag.split("\n")[0] for tag in li_tags_text]
 event_tags = [tag.split("\n")[1] for tag in li_tags_text]
-print(date_tags, event_tags)
+
+dictionary = {}
+
+for i in range(len(date_tags)):
+    dictionary[i] = {
+        'date': date_tags[i],
+        'name': event_tags[i]
+    }
+
+print(dictionary)
+
 
 driver.quit()
