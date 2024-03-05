@@ -1,13 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-import os
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 SIMILAR_ACCOUNT = "cristiano"
-INSTAGRAM_USERNAME = os.environ['INSTAGRAM_USERNAME']
-INSTAGRAM_PASSWORD = os.environ['INSTAGRAM_PASSWORD']
+INSTAGRAM_USERNAME = "bootcamp.contacts"
+INSTAGRAM_PASSWORD = "Scak1234"
 
 
 class InstagramBot:
